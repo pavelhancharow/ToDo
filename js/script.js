@@ -76,28 +76,22 @@ class ToDo {
       if (item.key === li.key) {
         item.completed = !item.completed;
       }
-
       this.render();
     });
   }
 
-  // editItem(li) {
-  //   this.todoData.forEach((item) => {
-  //     if (item.key === li.key) {
-  //       // li..contenteditable = true;
-  //       // let span = li.querySelector('.text-todo');
-  //       li.contentEditable = true;
-  //       li.addEventListener('input', () => {
-  //         item.value = `${li.value}`;
-  //         console.dir(item);
-
-  //       });
-  //     }
-  //     // this.render();
-  //   });
-
-  //   // console.log('edit');
-  // }
+  editItem(li) {
+    this.todoData.forEach((item) => {
+      if (item.key === li.key) {
+        let span = li.querySelector('.text-todo');
+        span.contentEditable = true;
+        span.addEventListener('blur', () => {
+          item.value = span.textContent;
+          this.render();
+        });
+      }
+    });
+  }
 
   handler() {
     this.container.addEventListener('click', (e) => {
